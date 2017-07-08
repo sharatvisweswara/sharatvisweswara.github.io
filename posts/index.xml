@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Sharat Visweswara</title>
+    <link>https://sharatvisweswara.github.io/posts/</link>
+    <description>Recent content in Posts on Sharat Visweswara</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/sharatvisweswara&#34;&gt;Sharat Visweswara&lt;/a&gt; 2017</copyright>
+    <lastBuildDate>Fri, 07 Jul 2017 22:49:01 -0700</lastBuildDate>
+    
+	<atom:link href="https://sharatvisweswara.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello World</title>
+      <link>https://sharatvisweswara.github.io/posts/hello-world/</link>
+      <pubDate>Fri, 07 Jul 2017 22:49:01 -0700</pubDate>
+      
+      <guid>https://sharatvisweswara.github.io/posts/hello-world/</guid>
+      <description>Hello World!
+Setting up Hugo and Github Pages, fingers crossed.</description>
+    </item>
+    
+  </channel>
+</rss>
