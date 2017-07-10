@@ -70,19 +70,20 @@ sources and output; but I prefer separate repositories.</p>
 
 <ol>
 <li>Install Hugo using <code>go get</code>.</li>
-<li>Checkout the output repo into the <code>public</code> subdirectory.</li>
+<li>Clone the output repo into the <code>public</code> subdirectory.</li>
 <li>Generate output using <code>hugo</code>; this overwrites existing content in <code>public</code>.</li>
 <li>Commit and push changes in <code>public</code> to the output repository.</li>
 </ol>
 
-<p>To enable step 4 I checkout the output repo using the <code>https</code> protocol instead
+<p>To enable step 4 I clone the output repo using the <code>https</code> protocol instead
 of the <code>git</code> protocol, and use a <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">Github Access Token</a> so that Travis can
-push to the repo as well as checkout. The access token is configured in Travis
+push to the repo as well. The access token is configured in Travis
 as an environment variable; this avoids exposing it in <code>.travis.yml</code>.</p>
 
 <p>I can now create my posts using Markdown, push my changes
-to Github, and minute or two later, they&rsquo;re live! Let me know if this method
-works for you, or if you have any other feedback on it.</p>
+to Github, and minute or two later, they&rsquo;re live!</p>
+
+<p>Let me know if this method works for you, or if you have any other feedback on it.</p>
 
     </div>
   </div>
