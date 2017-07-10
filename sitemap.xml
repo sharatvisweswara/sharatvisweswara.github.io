@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://sharatvisweswara.github.io/posts/blog-setup/</loc>
+    <lastmod>2017-07-09T17:56:43-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sharatvisweswara.github.io/posts/hello-world/</loc>
     <lastmod>2017-07-07T22:49:01-07:00</lastmod>
   </url>
@@ -14,13 +19,13 @@
   
   <url>
     <loc>https://sharatvisweswara.github.io/posts/</loc>
-    <lastmod>2017-07-07T22:49:01-07:00</lastmod>
+    <lastmod>2017-07-09T17:56:43-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://sharatvisweswara.github.io/</loc>
-    <lastmod>2017-07-07T22:49:01-07:00</lastmod>
+    <lastmod>2017-07-09T17:56:43-07:00</lastmod>
     <priority>0</priority>
   </url>
   
