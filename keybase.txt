@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/sharatvisweswara
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://sharat.autumncloud.one
+  * I am sharatvisweswara (https://keybase.io/sharatvisweswara) on keybase.
+  * I have a public key ASBegBIpl9tA8YyL7gSJAe0G1c9aitRy12dfF6JtPRRCNgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01205e80122997db40f18c8bee048901ed06d5cf5a8ad472d7675f17a26d3d1442360a",
+      "host": "keybase.io",
+      "kid": "01205e80122997db40f18c8bee048901ed06d5cf5a8ad472d7675f17a26d3d1442360a",
+      "uid": "1b6bcf98da7bec5a31fcae18f723b019",
+      "username": "sharatvisweswara"
+    },
+    "merkle_root": {
+      "ctime": 1506551536,
+      "hash": "3e744d1483123d625972389fa20f96e4be3a7b4105b31f093e085ae2e6101688784b8210f7adb98fad7424c6e82d787c3922f2c0d2aebb984090bd88bbfc6cf2",
+      "hash_meta": "434ac77a81448111d0969d01449a19bcec98e443c73269d34b1e9fba23757704",
+      "seqno": 1467579
+    },
+    "service": {
+      "hostname": "sharat.autumncloud.one",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.31"
+  },
+  "ctime": 1506551545,
+  "expire_in": 504576000,
+  "prev": "c62b363b947f730e0d23fad05014b68c603e2e37c3bb346e5a3506d548618b1e",
+  "seqno": 12,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgXoASKZfbQPGMi+4EiQHtBtXPWorUctdnXxeibT0UQjYKp3BheWxvYWTFA1Z7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwNWU4MDEyMjk5N2RiNDBmMThjOGJlZTA0ODkwMWVkMDZkNWNmNWE4YWQ0NzJkNzY3NWYxN2EyNmQzZDE0NDIzNjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwNWU4MDEyMjk5N2RiNDBmMThjOGJlZTA0ODkwMWVkMDZkNWNmNWE4YWQ0NzJkNzY3NWYxN2EyNmQzZDE0NDIzNjBhIiwidWlkIjoiMWI2YmNmOThkYTdiZWM1YTMxZmNhZTE4ZjcyM2IwMTkiLCJ1c2VybmFtZSI6InNoYXJhdHZpc3dlc3dhcmEifSwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE1MDY1NTE1MzYsImhhc2giOiIzZTc0NGQxNDgzMTIzZDYyNTk3MjM4OWZhMjBmOTZlNGJlM2E3YjQxMDViMzFmMDkzZTA4NWFlMmU2MTAxNjg4Nzg0YjgyMTBmN2FkYjk4ZmFkNzQyNGM2ZTgyZDc4N2MzOTIyZjJjMGQyYWViYjk4NDA5MGJkODhiYmZjNmNmMiIsImhhc2hfbWV0YSI6IjQzNGFjNzdhODE0NDgxMTFkMDk2OWQwMTQ0OWExOWJjZWM5OGU0NDNjNzMyNjlkMzRiMWU5ZmJhMjM3NTc3MDQiLCJzZXFubyI6MTQ2NzU3OX0sInNlcnZpY2UiOnsiaG9zdG5hbWUiOiJzaGFyYXQuYXV0dW1uY2xvdWQub25lIiwicHJvdG9jb2wiOiJodHRwOiJ9LCJ0eXBlIjoid2ViX3NlcnZpY2VfYmluZGluZyIsInZlcnNpb24iOjF9LCJjbGllbnQiOnsibmFtZSI6ImtleWJhc2UuaW8gZ28gY2xpZW50IiwidmVyc2lvbiI6IjEuMC4zMSJ9LCJjdGltZSI6MTUwNjU1MTU0NSwiZXhwaXJlX2luIjo1MDQ1NzYwMDAsInByZXYiOiJjNjJiMzYzYjk0N2Y3MzBlMGQyM2ZhZDA1MDE0YjY4YzYwM2UyZTM3YzNiYjM0NmU1YTM1MDZkNTQ4NjE4YjFlIiwic2Vxbm8iOjEyLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQBJlrOO//h6VlKAgQtBLuZ5B1Je3LVvW0N9LUw0EOcatmbJOzaCy3WeuCaJ/DCfJFK6ZbkAN0P0FX8M89qxfxAaoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCDx1NO1tvg6WSVckHCcDhCxCn2/0Hm+UmcNdb41boUuV6N0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/sharatvisweswara
+
+==================================================================
