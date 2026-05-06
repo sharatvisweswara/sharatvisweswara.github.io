@@ -1,11 +1,22 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Bio from '../components/Bio.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About"
-	description="About Sharat Visweswara"
-	pubDate={new Date()}
->
-	<p>Hi, I'm Sharat. This is my blog.</p>
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`About — ${SITE_TITLE}`} description="About Sharat Visweswara" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>About</h1>
+			<Bio />
+		</main>
+		<Footer />
+	</body>
+</html>
