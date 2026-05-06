@@ -56,7 +56,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Drop cap on the first paragraph of an article */
 .prose-editorial > p:first-of-type::first-letter {
 	@apply font-headings font-bold float-left text-[3.5rem] leading-[0.95] mr-2 mt-1;
-	@apply text-slate-900 dark:text-slate-100;
+	@apply text-slate-900;
+}
+
+.dark .prose-editorial > p:first-of-type::first-letter {
+	@apply text-slate-100;
 }
 
 /* Subtle small-caps utility for tag/meta chips */
