@@ -4,28 +4,31 @@ import { Icon } from 'astro-icon/components';
 
 <button
 	data-light-dark-toggle
-	class="flex-inline items-center justify-center w-8 h-8 transition hover:text-primary-500"
+	class="inline-flex items-center justify-center w-8 h-8 transition hover:text-primary-500"
 	aria-label="Toggle light/dark theme"
 >
 	<Icon name="heroicons:moon-solid" class="hidden dark:inline-block w-5 h-5" />
 	<Icon name="heroicons:sun-solid" class="inline-block dark:hidden w-5 h-5" />
 </button>
-<script>
-	function initLightDarkToggle() {
-		document.querySelectorAll('[data-light-dark-toggle]').forEach((btn) => {
-			btn.addEventListener('click', () => {
-				localStorage.theme =
-					localStorage.theme === 'dark' ||
-					(!('theme' in localStorage) &&
-						window.matchMedia('(prefers-color-scheme: dark)').matches)
-						? 'light'
-						: 'dark';
-				window.setColorScheme();
-			});
-		});
-	}
+<script is:inline>
+	(function () {
+		function toggle() {
+			var isDark = document.documentElement.classList.contains('dark');
+			var next = isDark ? 'light' : 'dark';
+			localStorage.theme = next;
+			document.documentElement.classList.toggle('dark', next === 'dark');
+		}
 
-	document.addEventListener('astro:page-load', initLightDarkToggle);
-	document.addEventListener('DOMContentLoaded', initLightDarkToggle);
-	initLightDarkToggle();
+		function init() {
+			document.querySelectorAll('[data-light-dark-toggle]').forEach(function (btn) {
+				btn.addEventListener('click', toggle);
+			});
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', init);
+		} else {
+			init();
+		}
+	})();
 </script>
