@@ -1,0 +1,14 @@
+---
+interface Props {
+	id: string;
+	alt: string;
+	w?: number;
+	h?: number;
+	q?: number;
+}
+
+const { id, alt, w = 1200, h = 450, q = 80 } = Astro.props;
+const src = `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&q=${q}&auto=format`;
+---
+
+<img src={src} alt={alt} width={w} height={h} class="rounded-lg" />
