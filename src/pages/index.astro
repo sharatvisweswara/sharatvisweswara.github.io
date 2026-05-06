@@ -1,84 +1,51 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import Bio from '../components/Bio.astro';
+import { Icon } from 'astro-icon/components';
 
-const posts = (await getCollection('blog'))
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 5);
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			.bio {
-				margin-bottom: 2em;
-				padding-bottom: 2em;
-				border-bottom: 1px solid rgb(var(--gray-light));
-			}
-			.bio p {
-				margin: 0 0 0.75em 0;
-			}
-			.bio p:last-child {
-				margin-bottom: 0;
-			}
-			ul {
-				list-style-type: none;
-				margin: 2em 0 0 0;
-				padding: 0;
-			}
-			ul li {
-				border-bottom: 1px solid rgb(var(--gray-light));
-				padding: 0.75rem 0;
-			}
-			ul li:last-child {
-				border-bottom: none;
-			}
-			ul li a {
-				display: flex;
-				justify-content: space-between;
-				align-items: baseline;
-				gap: 1em;
-				text-decoration: none;
-				color: rgb(var(--black));
-			}
-			ul li a:hover span.title {
-				color: var(--accent);
-			}
-			.date {
-				color: rgb(var(--gray));
-				font-size: 0.85em;
-				white-space: nowrap;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<div class="bio">
-				<Bio />
+<BaseLayout>
+	<div class="mx-auto max-w-2xl lg:max-w-4xl">
+		<header class="max-w-2xl mb-16">
+			<h1 class="text-4xl md:text-6xl font-black tracking-tight mb-8">
+				Hi, I'm Sharat.
+			</h1>
+			<div class="space-y-4 leading-8 text-slate-700 dark:text-slate-300">
+				<p>I started writing software when I was 10 and never stopped. I've worked on everything from kernel modules to massive distributed systems. I like building things that work well and look good.</p>
+				<p>I currently work at <a href="https://evocalize.com" class="text-primary-500 hover:underline">Evocalize</a> as a Founding Principal Engineer, previously at AWS and Amazon.</p>
 			</div>
-			<ul>
-				{
-					posts.map((post) => (
-						<li>
-							<a href={`/blog/${post.id}/`}>
-								<span class="title">{post.data.title}</span>
-								<span class="date">
-									<FormattedDate date={post.data.pubDate} />
-								</span>
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</main>
-		<Footer />
-	</body>
-</html>
+		</header>
+
+		<section>
+			<h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-10">Writing</h2>
+			<div class="space-y-10 sm:space-y-14">
+				{posts.map((post) => (
+					<article class="group relative">
+						<div class="absolute z-0 -inset-x-4 -inset-y-4 sm:rounded-lg opacity-0 scale-95 group-hover:scale-100 group-hover:opacity-100 bg-slate-50 transition dark:bg-slate-800"></div>
+						<div class="relative py-4">
+							<h3 class="text-lg sm:text-xl font-semibold my-1">
+								<a href={`/blog/${post.id}`}>
+									<div class="absolute inset-0"></div>
+									<span>{post.data.title}</span>
+								</a>
+							</h3>
+							<time class="text-sm font-mono text-stone-400">
+								<FormattedDate date={post.data.pubDate} />
+							</time>
+							<p class="mt-2 text-slate-700 dark:text-slate-300">{post.data.description}</p>
+							<div class="flex items-center space-x-1 text-sm font-medium mt-3 group-hover:text-primary-500">
+								<span>Read article</span>
+								<Icon name="heroicons:chevron-right-16-solid" />
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+	</div>
+</BaseLayout>

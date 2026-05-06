@@ -1,76 +1,43 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { Icon } from 'astro-icon/components';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			ul {
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				border-bottom: 1px solid rgb(var(--gray-light));
-				padding: 1rem 0;
-			}
-			ul li:last-child {
-				border-bottom: none;
-			}
-			ul li a {
-				display: block;
-				text-decoration: none;
-			}
-			ul li a:hover h4 {
-				color: var(--accent);
-			}
-			h4 {
-				margin: 0 0 0.25em 0;
-				color: rgb(var(--black));
-			}
-			.date {
-				color: rgb(var(--gray));
-				font-size: 0.85em;
-			}
-			.description {
-				color: rgb(var(--gray-dark));
-				font-size: 0.9em;
-				margin: 0.25em 0 0 0;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									<h4>{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-									<p class="description">{post.data.description}</p>
+<BaseLayout title="Blog" description="Writing on software, ideas, and whatever else.">
+	<div class="mx-auto max-w-2xl lg:max-w-4xl">
+		<header class="mb-16 max-w-2xl">
+			<h1 class="text-4xl md:text-6xl font-black tracking-tight mb-8">Writing</h1>
+		</header>
+		<section>
+			<div class="space-y-10 sm:space-y-14">
+				{posts.map((post) => (
+					<article class="group relative">
+						<div class="absolute z-0 -inset-x-4 -inset-y-4 sm:rounded-lg opacity-0 scale-95 group-hover:scale-100 group-hover:opacity-100 bg-slate-50 transition dark:bg-slate-800"></div>
+						<div class="relative py-4">
+							<h2 class="text-lg sm:text-xl font-semibold my-1">
+								<a href={`/blog/${post.id}`}>
+									<div class="absolute inset-0"></div>
+									<span>{post.data.title}</span>
 								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+							</h2>
+							<time class="text-sm font-mono text-stone-400">
+								<FormattedDate date={post.data.pubDate} />
+							</time>
+							<p class="mt-2 text-slate-700 dark:text-slate-300">{post.data.description}</p>
+							<div class="flex items-center space-x-1 text-sm font-medium mt-3 group-hover:text-primary-500">
+								<span>Read article</span>
+								<Icon name="heroicons:chevron-right-16-solid" />
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+		</section>
+	</div>
+</BaseLayout>

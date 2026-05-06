@@ -1,15 +1,7 @@
 ---
-const today = new Date();
+const year = new Date().getFullYear();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} Sharat Visweswara
+<footer class="max-w-2xl mx-auto pb-20 mt-10 pt-20 border-t border-slate-300 dark:border-slate-600 px-4 md:px-30 text-center text-slate-500 dark:text-slate-400">
+	<div>© {year} Sharat Visweswara</div>
 </footer>
-<style>
-	footer {
-		padding: 2em 1em;
-		color: rgb(var(--gray));
-		text-align: center;
-		font-size: 0.9em;
-	}
-</style>

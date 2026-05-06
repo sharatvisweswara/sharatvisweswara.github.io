@@ -1,50 +1,127 @@
 ---
+import { Icon } from 'astro-icon/components';
+import LightDarkToggle from './LightDarkToggle.astro';
 import { SITE_TITLE } from '../consts';
-import HeaderLink from './HeaderLink.astro';
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+	{ href: '/', text: 'Home', active: currentPath === '/' },
+	{ href: '/blog', text: 'Blog', active: currentPath.startsWith('/blog') },
+	{ href: '/about', text: 'About', active: currentPath.startsWith('/about') },
+];
 ---
 
 <header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
+	<div id="main-header" class="fixed w-full z-50 transition duration-500 px-4 sm:px-10">
+		<div
+			class="bg-white w-full md:w-2xl mx-auto flex h-12 items-center justify-between
+			ring-1 ring-slate-300 mt-10 px-4 rounded-lg shadow dark:bg-slate-800 dark:ring-white/10 dark:text-slate-200"
+		>
+			<a href="/" class="font-headings font-black text-xl">{SITE_TITLE}</a>
+
+			<div class="flex items-center h-full">
+				<nav class="hidden md:block h-full">
+					<ul class="flex space-x-6 h-full">
+						{navItems.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									class={`relative flex items-center h-full hover:text-primary-500 transition ${item.active ? 'text-primary-500' : ''}`}
+								>
+									{item.text}
+									{item.active && (
+										<span class="absolute inset-x-0 -bottom-px h-px bg-primary-500" />
+									)}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+				<div class="ml-4 flex items-center gap-2">
+					<button
+						data-open-mobile-nav
+						class="md:hidden flex-inline items-center justify-center w-10 h-10"
+						aria-label="Open main navigation"
+					>
+						<Icon name="heroicons:bars-2-solid" class="inline-block w-5 h-5" />
+					</button>
+					<LightDarkToggle />
+				</div>
+			</div>
 		</div>
-	</nav>
+	</div>
+
+	<!-- Mobile nav backdrop -->
+	<div
+		data-mobile-nav-element
+		data-close-mobile-nav
+		class="hidden bg-black/50 fixed inset-0 z-60 backdrop-blur-xs transition opacity-0 starting:opacity-0"
+	></div>
+
+	<!-- Mobile nav panel -->
+	<div
+		data-mobile-nav-element
+		class="hidden fixed z-60 inset-x-4 top-8 p-6 bg-white dark:bg-slate-800 dark:ring-white/10 dark:text-slate-200 shadow-md rounded-2xl transition starting:opacity-0 starting:scale-85 starting:-translate-y-8"
+	>
+		<div class="flex justify-end">
+			<button data-close-mobile-nav aria-label="Close main navigation">
+				<Icon name="heroicons:x-mark" />
+			</button>
+		</div>
+		<nav>
+			<ul class="divide-y divide-slate-200 dark:divide-slate-600">
+				{navItems.map((item) => (
+					<li>
+						<a
+							class={`block py-3 ${item.active ? 'text-primary-500' : ''}`}
+							href={item.href}
+						>
+							{item.text}
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+	</div>
 </header>
-<style>
-	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+<script>
+	function initNavigation() {
+		const body = document.body;
+		const scrollDown = 'scroll-down';
+		let lastScroll = 0;
+		const scrollThreshold = 50;
+
+		window.addEventListener('scroll', () => {
+			const currentScroll = window.scrollY;
+			if (currentScroll <= 0) {
+				body.classList.remove(scrollDown);
+				return;
+			}
+			if (Math.abs(currentScroll - lastScroll) > scrollThreshold) {
+				body.classList.toggle(scrollDown, currentScroll > lastScroll);
+				lastScroll = currentScroll;
+			}
+		});
+
+		const mobileNavElements = document.querySelectorAll('[data-mobile-nav-element]');
+
+		document.querySelectorAll('[data-close-mobile-nav]').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				mobileNavElements.forEach((el) => el.classList.add('hidden'));
+			});
+		});
+
+		document.querySelectorAll('[data-open-mobile-nav]').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				mobileNavElements.forEach((el) => {
+					el.classList.remove('hidden');
+					el.classList.add('opacity-100', 'block', 'scale-100', 'translate-y-0');
+				});
+			});
+		});
 	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 0.5em 0;
-	}
-	nav a {
-		padding: 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	nav a.active {
-		border-bottom-color: var(--accent);
-	}
-	.internal-links {
-		display: flex;
-		gap: 0.5em;
-	}
-</style>
+
+	initNavigation();
+	document.addEventListener('astro:page-load', initNavigation);
+</script>

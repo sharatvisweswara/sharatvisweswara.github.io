@@ -15,7 +15,14 @@
     "@astrojs/mdx": "^5.0.4",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
+    "@fontsource-variable/roboto": "^5.2.10",
+    "@fontsource-variable/space-grotesk": "^5.2.10",
+    "@iconify-json/heroicons": "^1.2.3",
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.2.2",
-    "sharp": "^0.34.3"
+    "astro-icon": "^1.1.5",
+    "sharp": "^0.34.3",
+    "tailwindcss": "^4.2.4"
   }
 }

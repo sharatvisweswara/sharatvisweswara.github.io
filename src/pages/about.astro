@@ -1,22 +1,15 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Bio from '../components/Bio.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_TITLE } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={`About — ${SITE_TITLE}`} description="About Sharat Visweswara" />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>About</h1>
-			<Bio />
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout title="About" description="About Sharat Visweswara">
+	<div class="mx-auto max-w-2xl">
+		<header class="mb-10">
+			<h1 class="text-4xl md:text-6xl font-black tracking-tight mb-8">About</h1>
+		</header>
+		<div class="space-y-6 leading-8 text-slate-700 dark:text-slate-300">
+			<p>I started writing software when I was 10 and never stopped. I've worked on everything from kernel modules to massive distributed systems. I like building things that work well and look good.</p>
+			<p>I currently work at <a href="https://evocalize.com" class="text-primary-500 hover:underline">Evocalize</a> as a Founding Principal Engineer, previously at AWS and Amazon.</p>
+		</div>
+	</div>
+</BaseLayout>
