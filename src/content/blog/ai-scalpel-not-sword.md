@@ -2,6 +2,7 @@
 title: 'Wield AI Like a Scalpel, Not a Sword'
 description: 'Every line of code is a place for bugs to hide. AI changes the economics — but it is leverage, and leverage is asymmetric.'
 pubDate: 'Apr 14 2026'
+tags: ['AI', 'Software Architecture', 'Technical Debt']
 ---
 
 Your codebase is both an asset and a liability.

@@ -2,13 +2,40 @@
 interface Props {
 	id: string;
 	alt: string;
+	caption?: string;
+	credit?: string;
 	w?: number;
 	h?: number;
 	q?: number;
 }
 
-const { id, alt, w = 1200, h = 450, q = 80 } = Astro.props;
+const { id, alt, caption, credit, w = 1200, h = 450, q = 80 } = Astro.props;
 const src = `https://images.unsplash.com/photo-${id}?w=${w}&h=${h}&fit=crop&q=${q}&auto=format`;
+const sourceHref = `https://unsplash.com/photos/${id}`;
 ---
 
-<img src={src} alt={alt} width={w} height={h} class="rounded-lg" />
+<figure class="my-8 not-prose">
+	<div class="overflow-hidden rounded-xl ring-1 ring-slate-200 dark:ring-slate-800 bg-slate-100 dark:bg-slate-900">
+		<img
+			src={src}
+			alt={alt}
+			width={w}
+			height={h}
+			loading="lazy"
+			decoding="async"
+			class="w-full h-auto block"
+		/>
+	</div>
+	{(caption || credit) && (
+		<figcaption class="mt-2 text-sm text-slate-500 dark:text-slate-400 leading-snug">
+			{caption}
+			{caption && (credit) && <span class="mx-1.5 text-slate-300 dark:text-slate-700">·</span>}
+			{credit && <span>{credit}</span>}
+		</figcaption>
+	)}
+	{!caption && !credit && (
+		<figcaption class="mt-2 text-xs text-slate-400 dark:text-slate-500">
+			Photo via <a href={sourceHref} class="underline decoration-slate-300 dark:decoration-slate-700 underline-offset-2 hover:text-primary-600 dark:hover:text-primary-400" rel="noopener noreferrer" target="_blank">Unsplash</a>
+		</figcaption>
+	)}
+</figure>

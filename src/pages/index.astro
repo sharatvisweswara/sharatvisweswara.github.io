@@ -1,51 +1,82 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import PostCard from '../components/PostCard.astro';
+import PostMeta from '../components/PostMeta.astro';
 import { Icon } from 'astro-icon/components';
+import { readingTime } from '../utils/readingTime';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const [featured, ...rest] = posts;
+const featuredMinutes = featured ? readingTime(featured.body) : 0;
 ---
 
 <BaseLayout>
 	<div class="mx-auto max-w-2xl lg:max-w-4xl">
-		<header class="max-w-2xl mb-16">
-			<h1 class="text-4xl md:text-6xl font-black tracking-tight mb-8">
-				Hi, I'm Sharat.
+		<header class="max-w-2xl mb-20 sm:mb-24">
+			<p class="eyebrow mb-5">Founding Principal Engineer · Evocalize</p>
+			<h1 class="text-3xl md:text-5xl font-black tracking-tight text-balance leading-[1.1] mb-6">
+				Software, written carefully.
 			</h1>
-			<div class="space-y-4 leading-8 text-slate-700 dark:text-slate-300">
-				<p>I started writing software when I was 10 and never stopped. I've worked on everything from kernel modules to massive distributed systems. I like building things that work well and look good.</p>
-				<p>I currently work at <a href="https://evocalize.com" class="text-primary-500 hover:underline">Evocalize</a> as a Founding Principal Engineer, previously at AWS and Amazon.</p>
+			<div class="space-y-4 leading-8 text-slate-700 dark:text-slate-300 text-lg">
+				<p>
+					I'm Sharat. I started writing software when I was 10 and never stopped — kernel modules, distributed systems, and most things between. I write here about engineering judgment, AI-assisted development, and how teams actually ship.
+				</p>
+				<p>
+					Currently Founding Principal Engineer at <a href="https://evocalize.com" class="text-primary-600 dark:text-primary-400 font-medium hover:underline underline-offset-4">Evocalize</a>. Previously AWS and Amazon.
+				</p>
 			</div>
 		</header>
 
-		<section>
-			<h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-10">Writing</h2>
-			<div class="space-y-10 sm:space-y-14">
-				{posts.map((post) => (
-					<article class="group relative">
-						<div class="absolute z-0 -inset-x-4 -inset-y-4 sm:rounded-lg opacity-0 scale-95 group-hover:scale-100 group-hover:opacity-100 bg-slate-50 transition dark:bg-slate-800"></div>
-						<div class="relative py-4">
-							<h3 class="text-lg sm:text-xl font-semibold my-1">
-								<a href={`/blog/${post.id}`}>
-									<div class="absolute inset-0"></div>
-									<span>{post.data.title}</span>
-								</a>
-							</h3>
-							<time class="text-sm font-mono text-stone-400">
-								<FormattedDate date={post.data.pubDate} />
-							</time>
-							<p class="mt-2 text-slate-700 dark:text-slate-300">{post.data.description}</p>
-							<div class="flex items-center space-x-1 text-sm font-medium mt-3 group-hover:text-primary-500">
-								<span>Read article</span>
-								<Icon name="heroicons:chevron-right-16-solid" />
-							</div>
+		{featured && (
+			<section class="mb-20 sm:mb-24" aria-labelledby="latest-heading">
+				<div class="flex items-baseline justify-between mb-6">
+					<h2 id="latest-heading" class="eyebrow">Latest</h2>
+					<a
+						href={`/blog/${featured.id}`}
+						class="text-sm text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+					>
+						Read →
+					</a>
+				</div>
+				<a
+					href={`/blog/${featured.id}`}
+					class="group block border-t border-slate-200 dark:border-slate-800 pt-8 hover:border-primary-400 dark:hover:border-primary-500 transition-colors"
+				>
+					<PostMeta
+						pubDate={featured.data.pubDate}
+						minutes={featuredMinutes}
+						tags={featured.data.tags}
+						class="mb-4"
+					/>
+					<h3 class="text-3xl sm:text-4xl font-bold tracking-tight text-balance text-slate-900 dark:text-slate-100 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-4">
+						{featured.data.title}
+					</h3>
+					<p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+						{featured.data.description}
+					</p>
+					<div class="flex items-center space-x-1 text-sm font-medium mt-5 text-slate-500 dark:text-slate-400 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+						<span>Read article</span>
+						<Icon name="heroicons:arrow-right-16-solid" class="transition-transform group-hover:translate-x-0.5" />
+					</div>
+				</a>
+			</section>
+		)}
+
+		{rest.length > 0 && (
+			<section aria-labelledby="archive-heading">
+				<h2 id="archive-heading" class="eyebrow mb-6">More writing</h2>
+				<div class="divide-y divide-slate-200 dark:divide-slate-800">
+					{rest.map((post) => (
+						<div class="py-2 first:pt-0">
+							<PostCard post={post} />
 						</div>
-					</article>
-				))}
-			</div>
-		</section>
+					))}
+				</div>
+			</section>
+		)}
 	</div>
 </BaseLayout>

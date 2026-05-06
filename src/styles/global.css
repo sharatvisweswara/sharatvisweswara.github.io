@@ -13,16 +13,52 @@
 	--color-primary-800: var(--color-indigo-800);
 	--color-primary-900: var(--color-indigo-900);
 	--color-primary-950: var(--color-indigo-950);
-	--font-headings: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	--font-sans: 'Roboto Variable', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-headings: 'Cabinet Grotesk', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-sans: 'Satoshi', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+html {
+	font-feature-settings: "ss01", "cv11";
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
 h1, h2, h3, h4, h5, h6 {
-	@apply font-headings;
+	@apply font-headings tracking-tight;
 }
 
 .scroll-down #main-header {
 	@apply transform -translate-y-[200px];
+}
+
+/* Quiet, editorial article prose */
+.prose-editorial {
+	@apply prose dark:prose-invert prose-slate max-w-none;
+	@apply prose-headings:font-headings prose-headings:tracking-tight;
+	@apply prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-2xl sm:prose-h2:text-[1.7rem];
+	@apply prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl;
+	@apply prose-p:leading-[1.8] prose-p:text-[1.0625rem];
+	@apply prose-a:text-primary-600 dark:prose-a:text-primary-400 prose-a:font-medium prose-a:no-underline hover:prose-a:underline prose-a:underline-offset-4 prose-a:decoration-primary-400/40;
+	@apply prose-strong:font-semibold prose-strong:text-slate-900 dark:prose-strong:text-slate-100;
+	@apply prose-blockquote:border-l-2 prose-blockquote:border-primary-400/60 prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-slate-600 dark:prose-blockquote:text-slate-300;
+	@apply prose-img:rounded-md prose-img:ring-1 prose-img:ring-slate-200 dark:prose-img:ring-slate-800;
+	@apply prose-code:font-normal prose-code:rounded prose-code:bg-slate-100 dark:prose-code:bg-slate-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.9em] prose-code:before:content-none prose-code:after:content-none;
+	@apply prose-hr:border-slate-200 dark:prose-hr:border-slate-800;
+}
+
+/* Drop cap on the first paragraph of an article */
+.prose-editorial > p:first-of-type::first-letter {
+	@apply font-headings font-bold float-left text-[3.5rem] leading-[0.95] mr-2 mt-1;
+	@apply text-slate-900 dark:text-slate-100;
+}
+
+/* Subtle small-caps utility for tag/meta chips */
+.eyebrow {
+	@apply text-[0.7rem] uppercase tracking-[0.14em] font-medium font-headings text-slate-500 dark:text-slate-400;
 }

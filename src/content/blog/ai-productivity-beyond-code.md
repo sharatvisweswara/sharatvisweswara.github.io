@@ -2,6 +2,7 @@
 title: 'AI Productivity Is About More Than Writing Code Faster'
 description: "The real productivity win from AI isn't writing code faster — it's reducing the archaeology so developers can think."
 pubDate: 'Apr 21 2026'
+tags: ['AI', 'Developer Productivity', 'Knowledge Work']
 ---
 
 Increasing developer productivity with AI isn't just about writing code faster.

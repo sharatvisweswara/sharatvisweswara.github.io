@@ -2,6 +2,7 @@
 title: 'Your AI Coding Agent Is Only as Good as Its Weakest Variable'
 description: 'Four things have to align for an AI coding agent to work. Miss one and you will waste time fighting the tool.'
 pubDate: 'Apr 28 2026'
+tags: ['AI', 'Coding Agents', 'Engineering Practice']
 ---
 
 After using AI coding agents across a variety of projects, models, and methodologies, I have a theory about when they work and when they don't. Four things have to align.
