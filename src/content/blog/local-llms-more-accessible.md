@@ -5,13 +5,13 @@ pubDate: 'May 06 2026'
 tags: ['AI', 'LLMs', 'Python', 'Developer Tools']
 ---
 
-Running a language model locally used to be the kind of thing that required an afternoon of fighting CUDA drivers, unanswered questions on Stack Ovewflow, forum threads full of conflicting advice, and a willingness to compile things from source. That era is largely over. The tooling has quietly gotten very good and accessible to a broader audience.
+Running a language model locally used to be the kind of thing that required an afternoon of fighting CUDA drivers, unanswered questions on Stack Overflow, forum threads full of conflicting advice, and a willingness to compile from source. That era is largely over. The tooling has quietly become very good and accessible to a broader audience.
 
-Admittedly, I've been writing code for a long time so I may be over estimating how easy this, but let's push on.
+Admittedly, I’ve been writing code for a long time, so I may be overestimating how easy this is—but let’s push on.
 
-To demonstrate this I built a small script that watches an email inbox over IMAP and summarises new messages using a locally-running LLM. It's extracted from a much bigger email concierge app I've been working on and hope to talk more about in subsequent blog posts.
+To demonstrate this, I built a small script that watches an email inbox over IMAP and summarizes new messages using a locally running LLM. It’s extracted from a much larger email concierge app I’ve been working on, and I hope to talk more about it in subsequent posts.
 
-I specifically use local LLMs because it's my email, it want it to stay private: I do not want Open AI, Claude and their ilk to see it. The amazing part is how little ceremony it takes to get this working. A link to the script is at the end of this article for those in a hurry. I do hope you enjoy reading the dissection below. Let me know what you think.
+I specifically use local LLMs because it’s my email, and I want it to stay private: I don’t want OpenAI, Claude, and their ilk to see it. The amazing part is how little ceremony it takes to get this working. A link to the script is at the end of this article for those in a hurry. I hope you enjoy the dissection below—let me know what you think.
 
 ## Dependency management: uv
 
@@ -29,9 +29,9 @@ The script is a single Python file. No `requirements.txt`. No virtual environmen
 # ///
 ```
 
-[uv](https://docs.astral.sh/uv/) — from [Astral](https://astral.sh), the people behind Ruff — is a Python package manager and runner written in Rust. The `uv run --script` convention, standardised in [PEP 723](https://peps.python.org/pep-0723/), lets you embed dependency metadata directly in the script. Running it is just `./summarize_email.py`; uv installs everything into an isolated environment and executes. No setup, no activation, no drift. And no polluting your system Python with random `pip`-installed packages.
+[uv](https://docs.astral.sh/uv/) — from [Astral](https://astral.sh/), the team behind Ruff — is a Python package manager and runner written in Rust. The `uv run --script` convention, standardised in [PEP 723](https://peps.python.org/pep-0723/), lets you embed dependency metadata directly in the script. Running it is as simple as `./summarize_email.py`; uv installs everything into an isolated environment and executes. No setup, no activation, no drift—and no polluting your system Python with random `pip`-installed packages.
 
-This is already a meaningful quality-of-life improvement over the traditional Python workflow. Before UV I struggled with Python dependency managemetn and virtual environemtnts, and help the view that Python was not appropriate for anything serious but now it's the first language I reach for. Enough about UV, the dependencies themselves are where it gets interesting.
+This is already a meaningful quality-of-life improvement over the traditional Python workflow. Before UV, I struggled with Python dependency management and virtual environments, which reinforced my view that Python wasn’t appropriate for anything serious. Now it’s the first language I reach for. Enough about UV—the dependencies themselves are where it gets interesting.
 
 ## Getting a model: Hugging Face
 
