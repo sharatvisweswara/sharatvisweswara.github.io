@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
 	@apply prose-strong:font-semibold prose-strong:text-slate-900 dark:prose-strong:text-slate-100;
 	@apply prose-blockquote:border-l-2 prose-blockquote:border-primary-400/60 prose-blockquote:font-normal prose-blockquote:not-italic prose-blockquote:text-slate-600 dark:prose-blockquote:text-slate-300;
 	@apply prose-img:rounded-md prose-img:ring-1 prose-img:ring-slate-200 dark:prose-img:ring-slate-800;
-	@apply prose-code:font-normal prose-code:rounded prose-code:bg-slate-100 dark:prose-code:bg-slate-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.9em] prose-code:before:content-none prose-code:after:content-none;
+	@apply prose-code:font-normal prose-code:rounded-md prose-code:bg-stone-200 dark:prose-code:bg-stone-700 prose-code:px-1.5 prose-code:py-0.5 prose-code:text-[0.9em] prose-code:before:content-none prose-code:after:content-none;
 	@apply prose-hr:border-slate-200 dark:prose-hr:border-slate-800;
 }
 
@@ -61,6 +61,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .dark .prose-editorial > p:first-of-type::first-letter {
 	@apply text-slate-100;
+}
+
+/* Code blocks: reset inner <code> background that leaks from prose-code styles,
+   and activate Shiki's dark-theme CSS variables when .dark is set. */
+.prose-editorial pre.astro-code-themes code {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.dark .prose-editorial pre.astro-code-themes {
+  background-color: var(--shiki-dark-bg) !important;
+  color: var(--shiki-dark) !important;
+}
+
+.dark .prose-editorial pre.astro-code-themes span {
+  color: var(--shiki-dark, inherit) !important;
 }
 
 /* Subtle small-caps utility for tag/meta chips */
