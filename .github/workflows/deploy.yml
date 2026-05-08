@@ -15,26 +15,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm install
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: ./dist
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
       - id: deployment
         uses: actions/deploy-pages@v5
